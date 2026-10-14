@@ -30,6 +30,12 @@ jobs:
         sudo apt-get install -y libgdbm-dev libsqlite3-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libncursesw5-dev
         pip install --upgrade pip setuptools virtualenv cython buildozer
 
+    - name: Aceitar Licenças do Android SDK Automaticamente
+      run: |
+        mkdir -p ~/.android
+        touch ~/.android/repositories.cfg
+        yes | sdkmanager --licenses || true
+
     - name: Compilar o APK com o Buildozer
       run: |
         buildozer android debug
@@ -39,3 +45,4 @@ jobs:
       with:
         name: Nia-IA-APK
         path: bin/*.apk
+        
