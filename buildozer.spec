@@ -37,14 +37,14 @@ orientation = portrait
 # (list) Permissions
 android.permissions = READ_EXTERNAL_STORAGE, WRITE_EXTERNAL_STORAGE, INTERNET
 
-# (int) Target Android API, should be as high as possible.
-android.api = 33
+# (int) Target Android API
+android.api = 34
 
 # (int) Minimum API your APK will support.
 android.minapi = 21
 
-# (str) Android NDK version to use
-android.ndk = 25.b
+# (str) Android NDK version to use (Atualizado para evitar o erro 404)
+android.ndk = 26b
 
 # (bool) Use --private data directory for storage (true or false)
 android.private_storage = True
