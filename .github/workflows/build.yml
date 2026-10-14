@@ -30,11 +30,13 @@ jobs:
         sudo apt-get install -y libgdbm-dev libsqlite3-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libncursesw5-dev
         pip install --upgrade pip setuptools virtualenv cython buildozer
 
-    - name: Aceitar Licenças do Android SDK Automaticamente
+    - name: Pré-aceitar Licenças na pasta do Buildozer
       run: |
-        mkdir -p ~/.android
-        touch ~/.android/repositories.cfg
-        yes | sdkmanager --licenses || true
+        mkdir -p ~/.buildozer/android/platform/android-sdk/licenses
+        echo -e "\n244d24128d31b751a44ade46e8e73d22a3a466d4\n28a00bde5b106191ef64da15c7e11d04499d343f\nc5b30a145d0ba15a961a1b55e46c73f1e9f16d3f\n84831b9409646a918e30573bab4c9c91346d8abd\n504667f4c0de7af1a06de9f4b1727b84351f2910\n89338d1417b6fe653a042d16637e71059e001302\nea4799016d024340606c379019c077413d994de7" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-license
+        echo -e "\n85115f5e28b4311ab585e54dcc7731fbc4615874" > ~/.buildozer/android/platform/android-sdk/licenses/android-googletv-license
+        echo -e "\n33594e7b416e05c00a875af394a5ae4d852bb398" > ~/.buildozer/android/platform/android-sdk/licenses/android-sdk-preview-license
+        echo -e "\ne9ee306b3e51e605283375b4f0b0704561b316d7" > ~/.buildozer/android/platform/android-sdk/licenses/android-sys-img-license
 
     - name: Compilar o APK com o Buildozer
       run: |
@@ -45,4 +47,3 @@ jobs:
       with:
         name: Nia-IA-APK
         path: bin/*.apk
-        
