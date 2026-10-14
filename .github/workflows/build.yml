@@ -1,0 +1,38 @@
+name: Compilar APK da Nia
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copiar os ficheiros do repositório
+      uses: actions/checkout@v4
+
+    - name: Configurar ambiente Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Instalar dependências de compilação Android
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential ccache git ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
+        sudo apt-get install -y libgdbm-dev libsqlite3-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libncursesw5-dev
+        pip install --upgrade pip setuptools virtualenv cython buildozer
+
+    - name: Compilar o APK com o Buildozer
+      run: |
+        buildozer android debug
+
+    - name: Disponibilizar o APK para Download
+      uses: actions/upload-artifact@v4
+      with:
+        name: Nia-IA-APK
+        path: bin/*.apk
+        
