@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Copiar os ficheiros do repositório
@@ -28,7 +28,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential ccache git ffmpeg libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev libportmidi-dev libswscale-dev libavformat-dev libavcodec-dev zlib1g-dev
         sudo apt-get install -y libgdbm-dev libsqlite3-dev libssl-dev libffi-dev libbz2-dev libreadline-dev libncursesw5-dev
-        pip install --upgrade pip setuptools virtualenv cython buildozer
+        pip install --upgrade pip setuptools virtualenv "cython>=0.29.33,<3.0.0" buildozer
 
     - name: Compilar o APK com o Buildozer
       run: |
