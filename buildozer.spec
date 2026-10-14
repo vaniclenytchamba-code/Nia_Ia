@@ -6,8 +6,8 @@ source.dir = .
 source.include_exts = py,png,json
 version = 1.0
 
-# Ajuste estratégico de bibliotecas para evitar a quebra no fim da compilação
-requirements = python3,kivy==2.3.0,requests,urllib3,certifi,charset-normalizer,idna,chardet,openssl
+# Força o uso do Python 3.11 estável com as dependências corretas de rede
+requirements = python3==3.11.9,kivy==2.3.0,requests,urllib3,certifi,charset-normalizer,idna,chardet,openssl
 
 presplash.filename = nia.png
 icon.filename = nia.png
